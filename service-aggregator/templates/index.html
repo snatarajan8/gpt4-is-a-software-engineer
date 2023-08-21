@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microservices UI</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Microservices UI</h1>
+
+    <h2>CPU Service</h2>
+    <button onclick="fetchData('cpu', 'cpu_percent')">Get CPU Percent</button>
+    <button onclick="fetchData('cpu', 'cpu_stats')">Get CPU Stats</button>
+    <!-- Add other buttons for cpu service -->
+
+    <h2>Devices Service</h2>
+    <button onclick="fetchData('devices', 'connected_devices')">Get Connected Devices</button>
+    <!-- Add other buttons for devices service -->
+
+    <h2>GitHub Service</h2>
+    <button onclick="fetchData('github', 'files')">Get Files</button>
+    <!-- Add other buttons for github service -->
+
+    <pre id="result"></pre>
+
+    <script>
+        function fetchData(service, endpoint) {
+            $.get(`/fetch/${service}/${endpoint}`, function(data) {
+                $("#result").text(JSON.stringify(data, null, 4));
+            });
+        }
+    </script>
+</body>
+</html>
